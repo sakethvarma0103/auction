@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{%load static %}
+{%block title%}{{book.title}}{%endblock%}
+{%block css_files%}
+<link rel="stylesheet" href="{%static  "bids.css" %}">
+{%endblock%}
+
+{%block content%}
+<section id="detail">
+
+<div class="container">
+    <div class="box">
+        <img src="{%static " images/"|add:book.image_name %}">
+        <h4 style="text-align:center;">{{book.title}}</h4>
+        <div class="inner_box">
+            <div class="left">
+                <h3>Highest Bidder</h3>
+                <p style="text-align:center;">{{book.highest}}
+                <p>
+            </div>
+            <div class="right">
+                <h3>Bid</h3>
+                <p style="text-align:center;">{{book.bid}}
+                <p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+<form method="POST" novalidate>
+    {% csrf_token %}
+    {% for field in form %}
+    {{field.tag}}
+    {{field}}
+    {% endfor %}
+    <button>Add bid</button>
+</form>
+<div>
+    <ul>
+        {%for bid in bids%}
+        <li>{{bid.name}}-{{bid.bid}}</li>
+        {%endfor%}
+    </ul>
+</div>
+
+{%endblock%}

@@ -1,0 +1,22 @@
+{%load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="{% static "style.css" %}">
+</head>
+<body>
+
+{%if form.errors %}  
+<p>error</p> 
+{%endif%}
+    <form action="{%url 'sign' %}" method="POST" novalidate>
+        {% csrf_token %}
+        <div class="form-control">
+            {{form}}
+        </div>
+        <button>Signup</button>
+    </form>
+</body>
+</html>
